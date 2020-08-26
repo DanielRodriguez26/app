@@ -1,30 +1,12 @@
-# from django.db.models import QuerySet
-
 from config.wsgi import *
-from core.erp.models import Category
+from core.erp.models import *
 
-#listar
-# query = Type.objects.all()
-# print(list)
+data = ['Leche y derivados', 'Carnes, pescados y huevos', 'Patatas, legumbres, frutos secos',
+        'Verduras y Hortalizas', 'Frutas', 'Cereales y derivados, azúcar y dulces',
+        'Grasas, aceite y mantequilla']
 
-# t = Category()
-# t.name = 'Dairy products'
-# t.save()
-
-# Editar
-# t = Type.objects.get(id=2)
-# t.name = 'Accionista'
-# t.save()
-
-
-#Eliminar
-# t = Category.objects.get(pk=1)
-# t.delete()
-
-
-
-print(Category.objects.all())
-
-for i in Category.objects.filter():
-  print(i)
+for i in data:
+    cat = Category(name=i)
+    cat.save()
+    print('Guardado registro N°{}'.format(cat.id))
 

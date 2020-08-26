@@ -1,14 +1,21 @@
 from django.db import models
 from datetime import datetime
 
+from django.forms import model_to_dict
+
 from core.erp.choices import gender_choices
 
 
 class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='Name', unique=True)
+    description = models.CharField(max_length=150, verbose_name='Description', null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    def toJson(self):
+        item = model_to_dict(self)
+        return item
 
     class Meta:
         verbose_name = 'Category'

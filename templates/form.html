@@ -1,0 +1,62 @@
+{% extends 'body.html' %}
+{#{% load static %}#}
+
+{% block content %}
+  <form action="." method="post">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-plus"></i>
+          {{ title }}
+        </h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        {% csrf_token %}
+        <input type="hidden" value="{{ action }}">
+        {% for field in form.visible_fields %}
+          <div class="form-group">
+            <label for="name">{{ field.label }}</label>
+            {{ field }}
+          </div>
+        {% endfor %}
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary btnTest "><i class="fas fa-save"></i> Save registry</button>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </form>
+  <script>
+   {% if form.errors %}
+     var error =  '';
+     {% for field in form %}
+       {% for error in field.errors %}
+         error += '{{ error }}\n';
+       {% endfor %}
+     {% endfor %}
+     Swal.fire({
+        title : 'Error!',
+        text : error,
+        icon : 'error',
+     })
+   {% endif %}
+  $('form').on('submit', function (e) {
+      e.preventDefault();
+      var parameters = $(this).serializeArray();
+      $.ajax({
+            url : '{% url 'erp:category_create' %}',
+            type : 'POST',
+            data : parameters,
+            dataType : 'json'
+        }).done(function (data) {
+            console.log(data)
+        }).fail(function (data) {
+            alert('Error')
+        }).always(function (data) {
+            {#alert('Complete')#}
+        })
+   })
+  </script>
+{% endblock %}
