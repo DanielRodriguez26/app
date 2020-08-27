@@ -1,9 +1,0 @@
-{% extends 'index.html' %}
-
-{% block content %}
-  <a href="{% url 'erp:vista1' %}">Vista1</a>
-
-  {% for product in products %}
-    <p>{{ product.id }} - {{ product.name }} - {{ product.cate.name }}</p>
-  {% endfor %}
-{% endblock %}

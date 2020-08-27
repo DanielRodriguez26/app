@@ -11,14 +11,6 @@ from core.erp.forms import CategoryForm
 from core.erp.models import Category
 
 
-def category_list(request):
-  data = {
-    'title' : 'Category List',
-    'categories' : Category.objects.all()
-
-  }
-  return render(request, 'category/list.html', data)
-
 class CategoryListView(ListView):
   model =Category
   template_name = 'category/list.html'
