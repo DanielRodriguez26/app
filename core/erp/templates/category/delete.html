@@ -1,16 +1,13 @@
 {% extends 'body.html' %}
+{#{% load static %}#}
 
 {% block content %}
   <form action="." method="post">
     <div class="card card-default">
       <div class="card-header">
         <h3 class="card-title">
-          {% if action == 'add' %}
-            <i class="fas fa-plus"></i>
-          {% else %}
-            <i class="fas fa-edit"></i>
-          {% endif %}
 
+          <i class="fas fa-trash"></i>
           {{ title }}
         </h3>
       </div>
@@ -18,16 +15,16 @@
       <div class="card-body">
         {% csrf_token %}
         <input type="hidden" name="action" value="{{ action }}">
-        {% for field in form.visible_fields %}
-          <div class="form-group">
-            <label for="name">{{ field.label }}</label>
-            {{ field }}
-          </div>
-        {% endfor %}
+
       </div>
-      <!-- /.card-body -->
+      <div class="alert alert-danger alert-dismissible">
+
+        <h5><i class="icon fas fa-ban"></i> Notification!</h5>
+        Are you sure to delete the record N° {{ object.id }}?
+      </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary btnTest "><i class="fas fa-save"></i> Save registry</button>
+        <button type="submit" class="btn btn-primary btnTest "><i class="fas fa-save"></i> Accept</button>
+        <a href="{{ list_url  }}" class="btn btn-info btnTest "><i class="fas fa-times"></i> Cancel</a>
       </div>
       <!-- /.card-body -->
     </div>
@@ -54,4 +51,5 @@
        })
    })
   </script>
+
 {% endblock %}
