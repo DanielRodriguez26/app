@@ -40,10 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     # Libs
+     'widget_tweaks',
     #Apps
     'core.erp',
-    #Libs
-    'widget_tweaks',
+    'core.homepage',
+    'core.login',
+
+
 ]
 
 MIDDLEWARE = [
@@ -124,3 +128,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 
 ]
+
+LOGIN_REDIRECT_URL = '/erp/dashboard/'
+LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = '/login/'

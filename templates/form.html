@@ -2,7 +2,7 @@
 
 {% block content %}
   <form action="." method="post">
-    <div class="card card-default">
+    <div class="card card-default card-primary">
       <div class="card-header">
         <h3 class="card-title">
           {% if action == 'add' %}
@@ -33,7 +33,7 @@
     </div>
   </form>
   <script>
-   $('form').on('submit', function (e) {
+  $('form').on('submit', function (e) {
       e.preventDefault();
       var parameters = $(this).serializeArray();
      $.ajax({
